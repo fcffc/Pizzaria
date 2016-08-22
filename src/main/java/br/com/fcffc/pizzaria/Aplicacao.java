@@ -19,7 +19,7 @@ public class Aplicacao implements WebApplicationInitializer {
 		Dynamic appServlet = servletContext.addServlet("appServlet", new DispatcherServlet(webApplicationContext));
 		appServlet.setLoadOnStartup(1);
 		appServlet.addMapping("/app/*");
-		
+		//Teste do Egit
 		servletContext.addListener(new ContextLoaderListener(webApplicationContext));
 	}
 }
