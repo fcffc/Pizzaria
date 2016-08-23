@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import br.com.fcffc.pizzaria.excecoes.IngredienteInvalidoException;
 import br.com.fcffc.pizzaria.model.repositorios.IngredienteRepositorio;
 import br.com.fcffc.pizzaria.modelo.entidades.Ingrediente;
 import br.com.fcffc.pizzaria.modelo.enumeracaoes.CategoriaDeIngrediente;
@@ -41,19 +42,19 @@ public class IngredienteController {
 	@RequestMapping(method = RequestMethod.POST)
 	// Mapeia os atributos de um form para um objeto
 	public String salvarIngrediente(@Valid @ModelAttribute Ingrediente ingrediente, BindingResult bindingResult,
-			RedirectAttributes redirectAttributes) {
+			Model model){
 
 		if (bindingResult.hasErrors()) {
-			// Adiciona um objeto (mensagem) na tela do usuário p/ leitura
-			FieldError error = bindingResult.getFieldErrors().get(0);
-			redirectAttributes.addFlashAttribute("mensagemErro",
-					"Não foi possível salvar o ingrediente." + error.getField() + " " + error.getDefaultMessage());
+			// Executa uma exceção (mensagem) na tela do usuário p/ leitura
+			throw new IngredienteInvalidoException();
+
 		} else {
 			ingredienteRepositorio.save(ingrediente);
-			redirectAttributes.addFlashAttribute("mensagemInfo", "Ingrediente salvo com sucesso.");
+
 		}
-		// Redireciona para o método @RequestMapping(method = RequestMethod.GET)
-		return "redirect:/app/ingredientes";
+		model.addAttribute("ingredientes", ingredienteRepositorio.findAll());
+		model.addAttribute("categorias", CategoriaDeIngrediente.values());		
+		return "ingrediente/tabela-ingredientes";
 	}
 
 }
