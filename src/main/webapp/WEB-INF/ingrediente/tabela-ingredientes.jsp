@@ -18,7 +18,7 @@
 	</thead>
 	<tbody>
 		<c:forEach items="${ingredientes}" var="ingrediente">
-			<tr>
+			<tr data-id = "${ingrediente.id}">
 				<td>${ingrediente.id}</td>
 				<td>${ingrediente.nome}</td>
 				<td>${ingrediente.categoria}</td>
