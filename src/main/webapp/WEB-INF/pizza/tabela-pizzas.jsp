@@ -6,23 +6,34 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <!DOCTYPE html>
+<fmt:setLocale value="pt_BR"/>
 <table
 	class="table table-hover table-condensed table-striped table-bordered">
 	<thead>
 		<tr>
 			<td style="width: 10%">#</td>
-			<td style="width: 50%">Nome</td>
-			<td style="width: 20%">Categoria</td>
+			<td style="width: 30%">Nome</td>
+			<td style="width: 20%">Preço</td>
+			<td style="width: 10%">Categoria</td>
+			<td style="width: 10%">Ingredientes</td>
 			<td style="width: 10%">Editar</td>
 			<td style="width: 10%">Deletar</td>
 		</tr>
 	</thead>
 	<tbody>
-		<c:forEach items="${ingredientes}" var="ingrediente">
-			<tr data-id="${ingrediente.id}">
-				<td>${ingrediente.id}</td>
-				<td>${ingrediente.nome}</td>
-				<td>${ingrediente.categoria}</td>
+		<c:forEach items="${pizzas}" var="pizza">
+			<tr data-id="${pizza.id}">
+				<td>${pizza.id}</td>
+				<td>${pizza.nome}</td>
+				<td>					
+					<fmt:formatNumber value="${pizza.preco}" type="currency"/>
+				</td>
+				<td>${pizza.categoria}</td>
+				<td>
+					<c:forEach items="${pizza.ingredientes}" var="ingrediente">
+						${ingrediente.nome}</br>
+					</c:forEach>
+				</td>
 				<td><button type="button" class="btn btn-warning btn-editar">Editar</button></td>
 				<td><button type="button" class="btn btn-danger btn-deletar">Deletar</button></td>
 			</tr>
@@ -30,13 +41,12 @@
 	</tbody>
 	<tfoot>
 		<tr>
-			<td colspan="5">Ingredientes cadastrados: <span
-				id="quantidade-ingredientes">${ingredientes.size()}</span></td>
+			<td colspan="7">Pizzas cadastradas: <span id="quantidade-pizzas">${pizzas.size()}</span></td>
 		</tr>
 		<tr>
-			<td colspan="5">
+			<td colspan="7">
 				<button type="button" class="btn btn-primary" data-toggle="modal"
-					data-target="#modal-ingrediente">Cadastrar Ingrediente</button>
+					data-target="#modal-pizza">Cadastrar Pizza</button>
 			</td>
 		</tr>
 	</tfoot>
