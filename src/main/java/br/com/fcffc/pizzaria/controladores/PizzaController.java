@@ -68,6 +68,12 @@ public class PizzaController {
 		}
 	}
 	
+	@RequestMapping(method=RequestMethod.GET, value="/{pizzaId}")
+	public ResponseEntity<Pizza> buscarPizza(@PathVariable Long pizzaId){
+		Pizza pizza = pizzaRepositorio.findOne(pizzaId);
+		return new ResponseEntity<>(pizza, HttpStatus.OK);
+	}
+	
 	@RequestMapping("/quantas")
 	@ResponseBody
 	public String quantasPizzas(){
