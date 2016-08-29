@@ -58,6 +58,16 @@ public class PizzaController {
 		return "pizza/tabela-pizzas";
 	}
 	
+	@RequestMapping(method=RequestMethod.DELETE, value="/{pizzaId}")
+	public ResponseEntity<String> deletarPizza(@PathVariable Long pizzaId){
+		try{
+			pizzaRepositorio.delete(pizzaId);
+			return new ResponseEntity<String>(HttpStatus.OK);
+		}catch(Exception ex){
+			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+		}
+	}
+	
 	@RequestMapping("/quantas")
 	@ResponseBody
 	public String quantasPizzas(){
