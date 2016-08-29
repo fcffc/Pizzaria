@@ -29,6 +29,17 @@
 	</head>
 	<body>
 		<section id="login" class="panel panel-primary">
+			<c:if test='${not empty param["semacesso"]}'>
+				<div class="alert alert-warning">
+					Usuário ou senha inválida.
+				</div>
+			</c:if>
+			
+			<c:if test='${not empty param["saiu"]}'>
+				<div class="alert alert-info">
+					Você saiu do sistema.
+				</div>
+			</c:if>
 			<form action="${path}/autenticar" method="post">
 				<div class="panel-heading">
 					Pizzaria - Login
@@ -36,10 +47,10 @@
 		
 				<div class="panel-body">
 					<label for="usuario">Usuário</label>
-					<input id="usuario" name="usuario" class="form-control">
+					<input id="usuario" name="usuario" class="form-control" required>
 		
 					<label for="senha">Senha</label>
-					<input type="password" id="senha" name="senha" class="form-control">
+					<input type="password" id="senha" name="senha" class="form-control" required>
 				<div class="panel-footer">
 					<button id="btn-login" class="btn btn-primary">Acessar</button>
 				</div>
