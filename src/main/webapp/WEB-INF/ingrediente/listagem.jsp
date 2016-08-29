@@ -12,9 +12,7 @@
 <c:set var="path" value="${pageContext.request.contextPath}"
 	scope="request"></c:set>
 <style type="text/css">
-@IMPORT url("${path}/static/bootstrap-3.3.7-dist/css/bootstrap.min.css")
-	;
-
+@IMPORT url("${path}/static/bootstrap-3.3.7-dist/css/bootstrap.min.css");
 @IMPORT
 	url("${path}/static/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css");
 </style>
