@@ -6,45 +6,43 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>${titulo}</title>
-<c:set var="path" value="${pageContext.request.contextPath}"
-	scope="request"></c:set>
-<style type="text/css">
-@IMPORT url("${path}/static/bootstrap-3.3.7-dist/css/bootstrap.min.css")
-	;
-
-@IMPORT
-	url("${path}/static/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css");
-</style>
-</head>
-<body>
-	<c:if test="${not empty mensagemErro}">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>${titulo}</title>
+		<c:set var="path" value="${pageContext.request.contextPath}"
+			scope="request"></c:set>
+		<style type="text/css">
+		@IMPORT url("${path}/static/bootstrap-3.3.7-dist/css/bootstrap.min.css");
+		@IMPORT url("${path}/static/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css");
+		</style>
+	</head>
+	<body>
 		<div class="container">
-			<div class="alert alert-danger">${mensagemErro}</div>
-		</div>
-	</c:if>
+			<jsp:include page="../menu.jsp"></jsp:include>
+			<c:if test="${not empty mensagemErro}">
+				<div>
+					<div class="alert alert-danger">${mensagemErro}</div>
+				</div>
+			</c:if>
 
-	<c:if test="${not empty mensagemInfo}">
-		<div class="container">
-			<div class="alert alert-info">${mensagemInfo}</div>
-		</div>
-	</c:if>
+			<c:if test="${not empty mensagemInfo}">
+				<div>
+					<div class="alert alert-info">${mensagemInfo}</div>
+				</div>
+			</c:if>
 
-	<section class="container" id="secao-pizzas">
-		<jsp:include page="tabela-pizzas.jsp"></jsp:include>
-	</section>
+			<section id="secao-pizzas">
+				<jsp:include page="tabela-pizzas.jsp"></jsp:include>
+			</section>
 	
-	<jsp:include page="modal-pizza.jsp"></jsp:include>
+			<jsp:include page="modal-pizza.jsp"></jsp:include>
 
-
-	<script type="text/javascript"
-		src="${path}/static/js/jquery-3.1.0.min.js"></script>
-	<script type="text/javascript"
-		src="${path}/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-	<script type="text/javascript"
-		src="${path}/static/js/pizzas.js"></script>
-
-</body>
+		</div>
+		<script type="text/javascript"
+			src="${path}/static/js/jquery-3.1.0.min.js"></script>
+		<script type="text/javascript"
+			src="${path}/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+		<script type="text/javascript"
+			src="${path}/static/js/pizzas.js"></script>
+	</body>
 </html>
