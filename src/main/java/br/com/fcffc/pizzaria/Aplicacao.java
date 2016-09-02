@@ -28,7 +28,7 @@ public class Aplicacao implements WebApplicationInitializer {
 		servletContext.addListener(new ContextLoaderListener(webApplicationContext));
 		
 		FilterRegistration.Dynamic filter = servletContext.addFilter("openEntityManagerFilter", buildOpenEntityManagerFilter());
-		filter.addMappingForUrlPatterns(getDispatcherTypes(), false, "/app/*");
+		filter.addMappingForUrlPatterns(getDispatcherTypes(), false, "/*");
 	}
 	
 	//Abre a seção

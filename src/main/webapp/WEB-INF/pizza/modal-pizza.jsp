@@ -41,6 +41,7 @@
 					</select> 
 					
 					<input id="id" name="id" type="hidden">
+					<input id="csrf" name="_csrf" type="hidden" value="${_csrf.token}">
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
