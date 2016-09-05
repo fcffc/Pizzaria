@@ -31,7 +31,7 @@
 				<td>${pizza.categoria}</td>
 				<td>
 					<c:forEach items="${pizza.ingredientes}" var="ingrediente">
-						${ingrediente.nome}</br>
+						${ingrediente.nome}
 					</c:forEach>
 				</td>
 				<td><button type="button" class="btn btn-warning btn-editar"><spring:message code="views.pizzas.tabela.colunas.editar" /></button></td>
