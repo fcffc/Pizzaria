@@ -6,12 +6,12 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import br.com.fcffc.pizzaria.model.repositorios.UsuarioRepositorio;
+import br.com.fcffc.pizzaria.model.repositorios.PizzariaRepositorio;
 
 @Service
 public class ServicoAutenticacao implements UserDetailsService{
 	
-	@Autowired private UsuarioRepositorio usuarioRepositorio;
+	@Autowired private PizzariaRepositorio usuarioRepositorio;
 	
 	@Override
 	public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {

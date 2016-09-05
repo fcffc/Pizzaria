@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import br.com.fcffc.pizzaria.modelo.entidades.Pizzaria;
 
 @Repository
-public interface UsuarioRepositorio extends CrudRepository<Pizzaria, Long> {
+public interface PizzariaRepositorio extends CrudRepository<Pizzaria, Long> {
 
 	public Pizzaria findOneByLogin(String login);
 
