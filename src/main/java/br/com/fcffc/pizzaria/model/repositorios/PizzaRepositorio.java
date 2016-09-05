@@ -10,10 +10,11 @@ import br.com.fcffc.pizzaria.modelo.entidades.Pizzaria;
 
 @Repository
 public interface PizzaRepositorio extends CrudRepository<Pizza, Long> {
-	
+
 	List<Pizza> findAllByProprietario(Pizzaria proprietario);
+
 	Pizza findByIdAndProprietario(Long id, Pizzaria proprietario);
-	
-	//List<Pizza> findAll(Sort sort);
+
+	List<Pizza> findAll();
 
 }

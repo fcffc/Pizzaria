@@ -1,5 +1,8 @@
 package br.com.fcffc.pizzaria.modelo.servicos;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,5 +40,16 @@ public class ServicoPizza {
 		Pizza pizza = this.buscar(id);
 		if (pizza != null)
 			repositorio.delete(pizza);
+	}
+
+	//Retorna uma lista oderndada de nomes de pizzas
+	public List<String> listarNomesPizzasDisponiveis() {
+		List<Pizza> pizzas = repositorio.findAll();		
+		
+		List<String> nomesPizzas = pizzas.stream().map((pizza)->{
+			return pizza.getNome();
+		}).sorted().collect(Collectors.toList());
+		
+		return nomesPizzas;
 	}
 }

@@ -14,19 +14,19 @@ import br.com.fcffc.pizzaria.modelo.servicos.ServicoAutenticacao;
 @Configuration
 @EnableWebSecurity
 public class ConfigSeguranca extends WebSecurityConfigurerAdapter {
-	
-	@Autowired private ServicoAutenticacao servicoAutenticacao;
-	
+
+	@Autowired
+	private ServicoAutenticacao servicoAutenticacao;
+
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth
-			.userDetailsService(servicoAutenticacao)
-			.passwordEncoder(encoder());
-		
-		
-		/* Lgin e password na memória c/ Acesso PIZZARIA
+		auth.userDetailsService(servicoAutenticacao).passwordEncoder(encoder());
+
+		/*
+		 * Lgin e password na memória c/ Acesso PIZZARIA
 		 * auth.inMemoryAuthentication()
-			.withUser("admin").password("admin").roles("PIZZARIA");*/		
+		 * .withUser("admin").password("admin").roles("PIZZARIA");
+		 */
 	}
 
 	// Autorização
@@ -37,13 +37,13 @@ public class ConfigSeguranca extends WebSecurityConfigurerAdapter {
 				.defaultSuccessUrl("/app/pizzas").failureUrl("/login.jsp?semacesso=true").usernameParameter("usuario")
 				.passwordParameter("senha").and().logout().logoutUrl("/sair").logoutSuccessUrl("/login.jsp?saiu=true");
 	}
-	
+
 	@Bean
-	public BCryptPasswordEncoder encoder(){
+	public BCryptPasswordEncoder encoder() {
 		return new BCryptPasswordEncoder();
 	}
-	
-	public static void main(String[]args){
+
+	public static void main(String[] args) {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		System.out.println(encoder.encode("admin"));
 	}
