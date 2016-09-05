@@ -7,7 +7,9 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
@@ -30,6 +32,9 @@ public class Pizza {
 	private CategoriaDePizza categoria;
 	@ManyToMany
 	private Set<Ingrediente> ingredientes;
+	@ManyToOne
+	@JoinColumn(name = "PROPRIETARIO")
+	private Pizzaria proprietario;
 
 	public Long getId() {
 		return id;
@@ -69,6 +74,14 @@ public class Pizza {
 
 	public void setIngredientes(Set<Ingrediente> ingredientes) {
 		this.ingredientes = ingredientes;
+	}
+
+	public Pizzaria getProprietario() {
+		return proprietario;
+	}
+
+	public void setProprietario(Pizzaria proprietario) {
+		this.proprietario = proprietario;
 	}
 
 	@Override
